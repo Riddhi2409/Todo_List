@@ -12,11 +12,9 @@ router.get('/',(req,res)=>{
 
 router.post('/', async (req, res) => {
     const { tokenId,name,picture,email } = req.body;
-    console.log(req.body)
     if (tokenId) {
         const existingData=await User.findOne({ tokenId: tokenId })
         if(existingData){
-            console.log("exis");
             return res.json(existingData)
         }
         // console.log(tokenId)
