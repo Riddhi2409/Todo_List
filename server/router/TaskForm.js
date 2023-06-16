@@ -118,4 +118,15 @@ router.post('/delete',async(req,res)=>{
     }
 })
 
+router.post('/search',async(req,res)=>{
+    const {emailId,searchTerm}=req.body
+    const data = await Task.find({emailId,title: { "$regex": searchTerm}})
+    if (data) {
+        return res.json(data)
+    }
+    else {
+        return res.json({data:null})
+    }
+})
+
 module.exports=router;
